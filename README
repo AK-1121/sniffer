@@ -3,4 +3,35 @@ He is a simple sniffer for monitorring packets on your host.
 You can use this script only on *NIX systems with superuser privileges.
 Python3
 
+About parsing headers:
+
+
+    sctruct function: https://docs.python.org/2/library/struct.html
+    B	- unsigned char -	integer	- 1 byte
+    H   - unsigned short -	integer	- 2 bytes
+    L	- unsigned long -	integer	- 4 bytes
+
+    About IP-header: http://en.wikipedia.org/wiki/IPv4#Header
+     0: B - IP protocol version(4bit) + Internet Header Length (IHL) (4bit)
+     1: B - DSCP +	ECN (1byte)
+     2: H - Total Length of packet (header+data) (16bit). Max = 65,535 bytes.
+     3: H - Identifier of packet for uniquely identifying the group 
+            of fragments of a single IP datagram (16bit).
+     4: H - Flags + Fragment Offset (16bit)
+     5: B - TTL
+     6: B - Protocol: 0x06 - TCP, 0x11 - UDP, 0x1B - RDP, ...
+     7: H - Header Checksum
+
+    About TCP-header 
+     http://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure
+     0: H - Source port
+     1: H - Destination port
+     2: L - Sequence number (4 bytes)
+     3: L - Acknowledgment number
+     2-3 - numbers for organizing tcp control of packets delivery
+     4: B - Data offset (4 bits) + Reserv (3bits) + flag(1bit)
+     Data offset - size of TCP header in 32-bit words
+
+
+
 
